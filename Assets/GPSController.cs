@@ -45,7 +45,12 @@ public class GPSController : MonoBehaviour {
     private void Update()
     {
         gpsTextView.text = Input.location.lastData.longitude.ToString() + " : " + Input.location.lastData.latitude.ToString();
-        debugTextView.text = Input.location.status.ToString();
+        debugTextView.text = "Location: " +
+              Input.location.lastData.latitude + " " +
+              Input.location.lastData.longitude + " " +
+              Input.location.lastData.altitude + " " +
+              Input.location.lastData.horizontalAccuracy + " " +
+              Input.location.lastData.timestamp;
     }
 
 }

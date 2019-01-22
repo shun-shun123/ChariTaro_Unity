@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DirectionDetector : MonoBehaviour {
 
-	// Use this for initialization
+    [SerializeField] Text debugTextView;
+
 	IEnumerator Start () {
 		if (!Input.location.isEnabledByUser)
         {
@@ -13,8 +15,18 @@ public class DirectionDetector : MonoBehaviour {
         Input.compass.enabled = true;
     }
 	
-	// Update is called once per frame
 	void Update () {
-        Debug.Log("Direction: " + Input.compass.magneticHeading);
+        DebugShow();
 	}
+
+    public float GetMagneticHeading()
+    {
+        return Input.compass.magneticHeading;
+    }
+
+    void DebugShow()
+    {
+        Debug.Log("DirectionDetector: " + Input.compass.magneticHeading);
+        debugTextView.text = "DirectionDetector: " + Input.compass.magneticHeading;
+    }
 }

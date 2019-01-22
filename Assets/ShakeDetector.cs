@@ -14,7 +14,7 @@ public class ShakeDetector : MonoBehaviour {
 	
 	void Update () {
         ShakeDetect();
-        debugTextView.text = shakeCount.ToString();
+        DebugShow();
 	}
 
     void ShakeDetect()
@@ -27,5 +27,11 @@ public class ShakeDetector : MonoBehaviour {
             Debug.Log("Shaken");
             shakeCount++;
         }
+    }
+
+    void DebugShow()
+    {
+        Debug.Log("ShakeDetector: " + shakeCount);
+        debugTextView.text = shakeCount.ToString();
     }
 }
