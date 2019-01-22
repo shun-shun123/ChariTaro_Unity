@@ -53,4 +53,13 @@ public class GPSController : MonoBehaviour {
               Input.location.lastData.timestamp;
     }
 
+    public float GetLongitude()
+    {
+        return Input.location.lastData.longitude;
+    }
+
+    public float GetLatitude()
+    {
+        return Input.location.lastData.latitude;
+    }
 }
