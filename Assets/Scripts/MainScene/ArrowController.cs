@@ -21,6 +21,10 @@ namespace MainScene
 
         [SerializeField] Text debugTextView;
 
+        // 現在位置と登録位置の差から方角を取り出すための変数
+        // latitude, longitude
+        Vector2 toNorth = new Vector2(10.0f, 0.0f);
+
         private void Start()
         {
             lastLongitude = PlayerPrefs.GetFloat(PlayerPrefsKeys.longitude, -1.0f);
@@ -45,7 +49,9 @@ namespace MainScene
             float diffLat = lastLatitude - latitude;
             debugTextView.text = diffLat + ":" + diffLong;
             float toNorthAngle = directionDetector.GetMagneticHeading();
-            transform.rotation = Quaternion.Euler(0, 0, toNorthAngle);
+            Vector2 diffVector = new Vector2(diffLat, diffLong);
+            float angle = Vector2.Angle(toNorth, diffVector);
+            transform.rotation = Quaternion.Euler(0, 0, toNorthAngle + angle);
         }
     }
 }
