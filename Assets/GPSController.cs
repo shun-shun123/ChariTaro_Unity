@@ -13,8 +13,6 @@ public class GPSController : MonoBehaviour
     #endregion
 
     #region Private Serialize Fields
-    [SerializeField] Text gpsTextView;
-    [SerializeField] Text debugTextView;
     [Header("GPS Accuracy Parameters")]
     [Tooltip("This value will be the accuracyInMeter of GPS")]
     [SerializeField]
@@ -24,6 +22,9 @@ public class GPSController : MonoBehaviour
     float updateDistanceInMeter = 5.0f;
     #endregion
 
+    #region Private Fields
+    private LocationInfo lastLocationInfo;
+    #endregion
     IEnumerator Start()
     {
         if (!Input.location.isEnabledByUser)
@@ -49,25 +50,17 @@ public class GPSController : MonoBehaviour
         }
         else
         {
-            debugTextView.text = "Location: " +
-                  Input.location.lastData.latitude + " " +
-                  Input.location.lastData.longitude + " " +
-                  Input.location.lastData.altitude + " " +
-                  Input.location.lastData.horizontalAccuracy + " " +
-                  Input.location.lastData.timestamp;
+            lastLocationInfo = Input.location.lastData;
+            Debug.LogFormat("Location: {0}:{1}\nAltitude(高度): {2}\nHorizontalAccuracy: {3}\nTimeStamp: {4}", lastLocationInfo.latitude, lastLocationInfo.longitude, lastLocationInfo.altitude, lastLocationInfo.horizontalAccuracy, lastLocationInfo.timestamp);
         }
         instance = this;
     }
 
     private void Update()
     {
-        gpsTextView.text = Input.location.lastData.longitude.ToString() + " : " + Input.location.lastData.latitude.ToString();
-        debugTextView.text = "Location: " +
-              Input.location.lastData.latitude + " " +
-              Input.location.lastData.longitude + " " +
-              Input.location.lastData.altitude + " " +
-              Input.location.lastData.horizontalAccuracy + " " +
-              Input.location.lastData.timestamp;
+        lastLocationInfo = Input.location.lastData;
+        Debug.LogFormat("Latitude: {0}\nLongitude: {1}", lastLocationInfo.latitude, lastLocationInfo.longitude);
+        Debug.LogFormat("Location: {0}:{1}\nAltitude(高度): {2}\nHorizontalAccuracy: {3}\nTimeStamp: {4}", lastLocationInfo.latitude, lastLocationInfo.longitude, lastLocationInfo.altitude, lastLocationInfo.horizontalAccuracy, lastLocationInfo.timestamp);
     }
 
     public static float GetLongitude()
