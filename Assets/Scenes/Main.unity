@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeMaxCount: 5
-  isDebugShown: 1
+  isDebugShown: 0
   SHAKETIMEOUT: 0.3
   shakenCount: 6
 --- !u!4 &1948503261
