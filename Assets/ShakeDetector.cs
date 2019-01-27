@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This class controls shake detection.
+/// This class is singlton, can't copy twice.
+/// </summary>
 public class ShakeDetector : MonoBehaviour {
 
+    #region Static Fields
+    static ShakeDetector instance;
+    #endregion
     #region Private Serialize Fields
     [SerializeField]
     Text debugTextView;
@@ -24,6 +31,7 @@ public class ShakeDetector : MonoBehaviour {
     void Update () {
         ShakeDetect();
         DebugShow();
+        instance = this;
 	}
 
     void ShakeDetect()

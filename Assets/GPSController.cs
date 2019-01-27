@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// This class controls GPS inputs.
+/// This class is singlton, sot can't copy twice.
+/// </summary>
 public class GPSController : MonoBehaviour
 {
+    #region Static Fields
+    static GPSController instance;
+    #endregion
 
     #region Private Serialize Fields
     [SerializeField] Text gpsTextView;
@@ -50,6 +56,7 @@ public class GPSController : MonoBehaviour
                   Input.location.lastData.horizontalAccuracy + " " +
                   Input.location.lastData.timestamp;
         }
+        instance = this;
     }
 
     private void Update()
@@ -63,12 +70,12 @@ public class GPSController : MonoBehaviour
               Input.location.lastData.timestamp;
     }
 
-    public float GetLongitude()
+    public static float GetLongitude()
     {
         return Input.location.lastData.longitude;
     }
 
-    public float GetLatitude()
+    public static float GetLatitude()
     {
         return Input.location.lastData.latitude;
     }

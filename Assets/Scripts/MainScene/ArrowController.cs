@@ -7,12 +7,12 @@ namespace MainScene
 {
     public class ArrowController : MonoBehaviour
     {
+        #region Private Fields
         private float lastLongitude = 0.0f;
         private float lastLatitude = 0.0f;
         private float longitude;
         private float latitude;
-        GPSController gpsController;
-        DirectionDetector directionDetector;
+        #endregion
 
         [Header("StateButton")]
         [SerializeField] Button registerButton;
@@ -37,18 +37,16 @@ namespace MainScene
             }
             registerButton.gameObject.SetActive(!isReset);
             resetButton.gameObject.SetActive(isReset);
-            gpsController = GameObject.Find("GPSController").GetComponent<GPSController>();
-            directionDetector = GameObject.Find("DirectionDetector").GetComponent<DirectionDetector>();
         }
 
         private void Update()
         {
-            longitude = gpsController.GetLongitude();
-            latitude = gpsController.GetLatitude();
+            longitude = GPSController.GetLongitude();
+            latitude = GPSController.GetLatitude();
             float diffLong = lastLongitude - longitude;
             float diffLat = lastLatitude - latitude;
             debugTextView.text = diffLat + ":" + diffLong;
-            float toNorthAngle = directionDetector.GetMagneticHeading();
+            float toNorthAngle = DirectionDetector.GetMagneticHeading();
             Vector2 diffVector = new Vector2(diffLat, diffLong);
             float angle = Vector2.Angle(toNorth, diffVector);
             transform.rotation = Quaternion.Euler(0, 0, toNorthAngle + angle);
