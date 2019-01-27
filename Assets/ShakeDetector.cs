@@ -19,12 +19,21 @@ public class ShakeDetector : MonoBehaviour {
     bool isDebugShown = true;
     #endregion
 
+    #region Private Serialized Fields
+    [Header("Shake Detection Parameters")]
+    [Tooltip("TimeOut for shake detection")]
+    [SerializeField]
+    private float SHAKETIMEOUT = 0.5f;
+    [Tooltip("The times of shaken for shake detection")]
+    [SerializeField]
+    private int shakenCount = 6;
+    #endregion
+
     #region Private Fields
     private Vector3 preAcceleration;
     private Vector3 acceleration;
     private float dotVec;
     private float lastShakenTime;
-    private const float SHAKETIMEOUT = 0.5f;
     private int shakeCount = 0;
     #endregion
 
@@ -35,7 +44,7 @@ public class ShakeDetector : MonoBehaviour {
 
     void Update () {
         ShakeDetect();
-        if (shakeCount >= 8 && !PlayerPrefs.HasKey(PlayerPrefsKeys.latitude) && !PlayerPrefs.HasKey(PlayerPrefsKeys.longitude))
+        if (shakeCount >= shakenCount && !PlayerPrefs.HasKey(PlayerPrefsKeys.latitude) && !PlayerPrefs.HasKey(PlayerPrefsKeys.longitude))
         {
             SaveCurrentLocation();
         }
@@ -57,14 +66,12 @@ public class ShakeDetector : MonoBehaviour {
             if (Time.time - lastShakenTime >= SHAKETIMEOUT)
             {
                 shakeCount = 1;
-                Debug.Log("<Color=Red>SHAKETIMEOUT</Color>");
                 lastShakenTime = Time.time;
                 return;
             }
             // 前回のシェイク検知から連続した検知なら
             else
             {
-                Debug.Log("<Color=Red>Continueing Shaking</Color>");
                 lastShakenTime = Time.time;
                 shakeCount++;
             }
@@ -75,6 +82,8 @@ public class ShakeDetector : MonoBehaviour {
     {
         PlayerPrefs.SetFloat(PlayerPrefsKeys.latitude, GPSController.GetLatitude());
         PlayerPrefs.SetFloat(PlayerPrefsKeys.longitude, GPSController.GetLongitude());
+        // UiControllerに保存処理を通達し、UIを変更する
+        UiController.isSavedLocationData = true;
     }
 
     void DebugShow()

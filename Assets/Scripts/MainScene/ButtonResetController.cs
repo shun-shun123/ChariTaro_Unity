@@ -10,6 +10,7 @@ namespace MainScene
         {
             PlayerPrefs.DeleteKey(PlayerPrefsKeys.longitude);
             PlayerPrefs.DeleteKey(PlayerPrefsKeys.latitude);
+            UiController.isSavedLocationData = false;
         }
     }
 }
