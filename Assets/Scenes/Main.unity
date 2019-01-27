@@ -274,8 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ec47275c8e74fa2a8f8633f2604a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gpsTextView: {fileID: 1490717741}
-  debugTextView: {fileID: 0}
   accuraceInMeter: 5
   updateDistanceInMeter: 5
 --- !u!4 &158761156
@@ -833,7 +831,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: b3b6d5f6357e142fbbe5bfd45e5ff3df, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: b3b6d5f6357e142fbbe5bfd45e5ff3df, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1346,10 +1345,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
