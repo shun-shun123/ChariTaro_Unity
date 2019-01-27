@@ -3,10 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GPSController : MonoBehaviour {
+public class GPSController : MonoBehaviour
+{
 
+    #region Private Serialize Fields
     [SerializeField] Text gpsTextView;
     [SerializeField] Text debugTextView;
+    [Header("GPS Accuracy Parameters")]
+    [Tooltip("This value will be the accuracyInMeter of GPS")]
+    [SerializeField]
+    float accuraceInMeter = 10.0f;
+    [Tooltip("This value will be the updateDistanceInMeters of GPS")]
+    [SerializeField]
+    float updateDistanceInMeter = 5.0f;
+    #endregion
 
     IEnumerator Start()
     {
@@ -14,7 +24,7 @@ public class GPSController : MonoBehaviour {
         {
             yield break;
         }
-        Input.location.Start();
+        Input.location.Start(accuraceInMeter, updateDistanceInMeter);
         int maxWait = 120;
         while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
         {

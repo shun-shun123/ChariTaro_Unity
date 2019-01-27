@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 public class ShakeDetector : MonoBehaviour {
 
-    [SerializeField] Text debugTextView;
+    #region Private Serialize Fields
+    [SerializeField]
+    Text debugTextView;
+    [SerializeField]
+    Text shakeNoticeTextView;
+    [SerializeField]
+    int shakeMaxCount = 5;
+    #endregion
 
+    #region Private Fields
     private Vector3 preAcceleration;
     private Vector3 acceleration;
     private float dotVec;
     private int shakeCount = 0;
-	
-	void Update () {
+    #endregion
+
+    void Update () {
         ShakeDetect();
         DebugShow();
 	}
@@ -27,11 +36,24 @@ public class ShakeDetector : MonoBehaviour {
             Debug.Log("Shaken");
             shakeCount++;
         }
+        else
+        {
+            Debug.Log("Stop Shaken");
+            shakeCount = 0;
+        }
     }
 
     void DebugShow()
     {
         Debug.Log("ShakeDetector: " + shakeCount);
         debugTextView.text = shakeCount.ToString();
+        if (shakeCount >= shakeMaxCount)
+        {
+            shakeNoticeTextView.gameObject.SetActive(true);
+        }
+        else
+        {
+            shakeNoticeTextView.gameObject.SetActive(false);
+        }
     }
 }
