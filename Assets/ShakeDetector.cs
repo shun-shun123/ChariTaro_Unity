@@ -47,6 +47,7 @@ public class ShakeDetector : MonoBehaviour {
         if (shakeCount >= shakenCount && !PlayerPrefs.HasKey(PlayerPrefsKeys.latitude) && !PlayerPrefs.HasKey(PlayerPrefsKeys.longitude))
         {
             SaveCurrentLocation();
+            shakeCount = 0;
         }
         if (isDebugShown)
         {
