@@ -63,13 +63,14 @@ public class GPSController : MonoBehaviour
         Debug.LogFormat("Location: {0}:{1}\nAltitude(高度): {2}\nHorizontalAccuracy: {3}\nTimeStamp: {4}", lastLocationInfo.latitude, lastLocationInfo.longitude, lastLocationInfo.altitude, lastLocationInfo.horizontalAccuracy, lastLocationInfo.timestamp);
     }
 
+    public static float GetLatitude()
+    {
+        return Input.location.lastData.latitude;
+    }
+
     public static float GetLongitude()
     {
         return Input.location.lastData.longitude;
     }
 
-    public static float GetLatitude()
-    {
-        return Input.location.lastData.latitude;
-    }
 }

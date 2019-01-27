@@ -13,9 +13,13 @@ public class DirectionDetector : MonoBehaviour {
     #region Static Fields
     static DirectionDetector instance;
     #endregion
-    [SerializeField] Text debugTextView;
 
-	IEnumerator Start () {
+    #region Private Serialized Fields
+    [SerializeField]
+    bool isDebugShown = true;
+    #endregion
+
+    IEnumerator Start () {
 		if (!Input.location.isEnabledByUser)
         {
             yield break;
@@ -25,7 +29,10 @@ public class DirectionDetector : MonoBehaviour {
     }
 	
 	void Update () {
-        DebugShow();
+        if (isDebugShown)
+        {
+            DebugShow();
+        }
 	}
 
     public static float GetMagneticHeading()
@@ -35,7 +42,6 @@ public class DirectionDetector : MonoBehaviour {
 
     void DebugShow()
     {
-        Debug.Log("DirectionDetector: " + Input.compass.magneticHeading);
-        debugTextView.text = "DirectionDetector: " + Input.compass.magneticHeading;
+        Debug.Log("<Color=Red><a>MagneticHeading</a></Color>: " + Input.compass.magneticHeading);
     }
 }
