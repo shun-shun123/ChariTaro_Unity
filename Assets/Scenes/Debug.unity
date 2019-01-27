@@ -391,8 +391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ec47275c8e74fa2a8f8633f2604a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gpsTextView: {fileID: 1393399987}
-  debugTextView: {fileID: 375308667}
   accuraceInMeter: 10
   updateDistanceInMeter: 5
 --- !u!4 &387450381
@@ -1283,7 +1281,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 33f92baf4fc754561b23c59d9675fd54, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9cd8871ddcdd64b9593f002c9b521cbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
