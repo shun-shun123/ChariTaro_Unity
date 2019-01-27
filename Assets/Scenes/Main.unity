@@ -792,10 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c5a137b9c1444eeba8fe496a43da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  registerButton: {fileID: 0}
-  resetButton: {fileID: 1871541419}
-  isReset: 1
-  debugTextView: {fileID: 0}
+  circle: {fileID: 1027796385}
 --- !u!1 &1027796385
 GameObject:
   m_ObjectHideFlags: 0
