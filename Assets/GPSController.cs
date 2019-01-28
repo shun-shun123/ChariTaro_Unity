@@ -65,12 +65,35 @@ public class GPSController : MonoBehaviour
 
     public static float GetLatitude()
     {
-        return Input.location.lastData.latitude;
+        bool canGetAccurateRes = false;
+        float getLatitude = 0f;
+        while (canGetAccurateRes){
+            LocationInfo locationInfo = Input.location.lastData;
+            // 正確な値が取れたとき
+            if (locationInfo.horizontalAccuracy <= 3.0f) 
+            {
+                canGetAccurateRes = true;
+                getLatitude = locationInfo.latitude;
+            }
+        }
+        return getLatitude;
     }
 
     public static float GetLongitude()
     {
-        return Input.location.lastData.longitude;
+        bool canGetAccurateRes = false;
+        float getLongitude = 0f;
+        while (canGetAccurateRes)
+        {
+            LocationInfo locationInfo = Input.location.lastData;
+            // 正確な値が取れたとき
+            if (locationInfo.horizontalAccuracy <= 3.0f)
+            {
+                canGetAccurateRes = true;
+                getLongitude = locationInfo.longitude;
+            }
+        }
+        return getLongitude;
     }
 
 }
