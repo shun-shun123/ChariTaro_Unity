@@ -46,7 +46,7 @@ public class ShakeDetector : MonoBehaviour {
         ShakeDetect();
         if (shakeCount >= shakenCount && !PlayerPrefs.HasKey(PlayerPrefsKeys.latitude) && !PlayerPrefs.HasKey(PlayerPrefsKeys.longitude))
         {
-            SaveCurrentLocation();
+            StartCoroutine("SaveCurrentLocation");
             shakeCount = 0;
         }
         if (isDebugShown)
@@ -79,10 +79,21 @@ public class ShakeDetector : MonoBehaviour {
         }
     }
 
-    void SaveCurrentLocation()
+    IEnumerator SaveCurrentLocation()
     {
-        PlayerPrefs.SetFloat(PlayerPrefsKeys.latitude, GPSController.GetLatitude());
-        PlayerPrefs.SetFloat(PlayerPrefsKeys.longitude, GPSController.GetLongitude());
+        float latitudeData = 0.0f;
+        float longitudeData = 0.0f;
+        for (int i = 0; i < 4; i++)
+        {
+            latitudeData += GPSController.GetLatitude();
+            longitudeData += GPSController.GetLongitude();
+            yield return new WaitForSeconds(0.1f);
+        }
+        float averageLatitude = latitudeData / 4.0f;
+        float averageLongitude = longitudeData / 4.0f;
+        // 4回計測して平均値を保存する
+        PlayerPrefs.SetFloat(PlayerPrefsKeys.latitude, averageLatitude;
+        PlayerPrefs.SetFloat(PlayerPrefsKeys.longitude, averageLongitude);
         // UiControllerに保存処理を通達し、UIを変更する
         UiController.isSavedLocationData = true;
     }
