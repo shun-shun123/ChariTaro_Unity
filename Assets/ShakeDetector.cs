@@ -92,7 +92,7 @@ public class ShakeDetector : MonoBehaviour {
         float averageLatitude = latitudeData / 4.0f;
         float averageLongitude = longitudeData / 4.0f;
         // 4回計測して平均値を保存する
-        PlayerPrefs.SetFloat(PlayerPrefsKeys.latitude, averageLatitude;
+        PlayerPrefs.SetFloat(PlayerPrefsKeys.latitude, averageLatitude);
         PlayerPrefs.SetFloat(PlayerPrefsKeys.longitude, averageLongitude);
         // UiControllerに保存処理を通達し、UIを変更する
         UiController.isSavedLocationData = true;
