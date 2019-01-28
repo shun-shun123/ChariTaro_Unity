@@ -14,12 +14,7 @@ public class ShakeDetector : MonoBehaviour {
     #endregion
     #region Private Serialize Fields
     [SerializeField]
-    int shakeMaxCount = 5;
-    [SerializeField]
     bool isDebugShown = true;
-    #endregion
-
-    #region Private Serialized Fields
     [Header("Shake Detection Parameters")]
     [Tooltip("TimeOut for shake detection")]
     [SerializeField]
