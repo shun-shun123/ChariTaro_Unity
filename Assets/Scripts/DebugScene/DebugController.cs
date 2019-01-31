@@ -12,6 +12,7 @@ public class DebugController : MonoBehaviour {
     [SerializeField] Text savedLocationInfo;
     [SerializeField] GameObject trueHeadingArrow;
     [SerializeField] GameObject magneticHeadingArrow;
+    [SerializeField] Text diffAngleText;
     #endregion
 
     #region DebugParameters
@@ -20,6 +21,8 @@ public class DebugController : MonoBehaviour {
     [SerializeField] float dummyLatitude = 30.0f;
     [SerializeField] float dummyLongitude = 135.0f;
     #endregion
+
+    Vector2 toNorth = new Vector2(1.0f, 0.0f);
 
     void Start () {
 		if (setDummyData)
@@ -33,7 +36,7 @@ public class DebugController : MonoBehaviour {
 	void Update () {
         horizontalAccuracyText.text = "HorAcc: " + GPSController.GetAccuracy().ToString();
         locationDataText.text = "Lat: " + GPSController.GetLatitude().ToString() + "Long: " + GPSController.GetLongitude();
-        northHeadingText.text = "magneticHeading: " + DirectionDetector.GetMagneticHeading().ToString() + " | TrueHeading: " + DirectionDetector.GetTrueHeading().ToString();
+        northHeadingText.text = "magneticHeading: " + DirectionDetector.GetMagneticHeading().ToString() + "\nTrueHeading: " + DirectionDetector.GetTrueHeading().ToString();
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.latitude) && PlayerPrefs.HasKey(PlayerPrefsKeys.longitude))
         {
             savedLocationInfo.text = "Lat: " + PlayerPrefs.GetFloat(PlayerPrefsKeys.latitude) + "Long: " + PlayerPrefs.GetFloat(PlayerPrefsKeys.longitude);
@@ -42,6 +45,11 @@ public class DebugController : MonoBehaviour {
         {
             savedLocationInfo.text = "Location Data is not saved";
         }
+        float diffLat = PlayerPrefs.GetFloat(PlayerPrefsKeys.latitude) - GPSController.GetLatitude();
+        float diffLong = PlayerPrefs.GetFloat(PlayerPrefsKeys.longitude) - GPSController.GetLongitude();
+        Vector2 diffVector = new Vector2(diffLat, diffLong);
+        float angle = Vector2.Angle(toNorth, diffVector);
+        diffAngleText.text = "DiffAngle: " + angle + "\nFinalAngle: " + (angle + DirectionDetector.GetMagneticHeading());
         magneticHeadingArrow.transform.rotation = Quaternion.Euler(0, 0, DirectionDetector.GetMagneticHeading());
         trueHeadingArrow.transform.rotation = Quaternion.Euler(0, 0, DirectionDetector.GetTrueHeading());
 	}

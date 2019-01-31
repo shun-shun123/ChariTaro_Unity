@@ -41,8 +41,9 @@ namespace MainScene
             float diffLat = lastLatitude - latitude;
             float diffLong = lastLongitude - longitude;
             float toNorthAngle =  (DirectionDetector.GetMagneticHeading() + DirectionDetector.GetTrueHeading()) / 2.0f;
-            Vector2 diffVector = new Vector2(diffLong, diffLat);
+            Vector2 diffVector = new Vector2(diffLat, diffLong);
             float angle = Vector2.Angle(toNorth, diffVector);
+            Debug.Log("RotationalAngle: " + (toNorthAngle + angle));
             transform.rotation = Quaternion.Euler(0, 0, toNorthAngle + angle);
             circle.transform.position = transform.position + transform.up * CirclePlacement(diffLat, diffLong);
         }
