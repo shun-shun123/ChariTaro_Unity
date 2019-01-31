@@ -17,8 +17,8 @@ public class DebugController : MonoBehaviour {
     #region DebugParameters
     [Header("DummyDataSettings")]
     [SerializeField] bool setDummyData = true;
-    [SerializeField] float dummyLatitude = 36.0f;
-    [SerializeField] float dummyLongitude = 140.0f;
+    [SerializeField] float dummyLatitude = 30.0f;
+    [SerializeField] float dummyLongitude = 135.0f;
     #endregion
 
     void Start () {
