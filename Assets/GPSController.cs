@@ -56,44 +56,19 @@ public class GPSController : MonoBehaviour
         instance = this;
     }
 
-    private void Update()
-    {
-        lastLocationInfo = Input.location.lastData;
-        Debug.LogFormat("Latitude: {0}\nLongitude: {1}", lastLocationInfo.latitude, lastLocationInfo.longitude);
-        Debug.LogFormat("Location: {0}:{1}\nAltitude(高度): {2}\nHorizontalAccuracy: {3}\nTimeStamp: {4}", lastLocationInfo.latitude, lastLocationInfo.longitude, lastLocationInfo.altitude, lastLocationInfo.horizontalAccuracy, lastLocationInfo.timestamp);
-    }
-
     public static float GetLatitude()
     {
-        bool canGetAccurateRes = false;
-        float getLatitude = 0f;
-        while (canGetAccurateRes){
-            LocationInfo locationInfo = Input.location.lastData;
-            // 正確な値が取れたとき
-            if (locationInfo.horizontalAccuracy <= 3.0f) 
-            {
-                canGetAccurateRes = true;
-                getLatitude = locationInfo.latitude;
-            }
-        }
-        return getLatitude;
+        return Input.location.lastData.latitude;
     }
 
     public static float GetLongitude()
+    { 
+        return Input.location.lastData.longitude;
+    }
+
+    public static float GetAccuracy()
     {
-        bool canGetAccurateRes = false;
-        float getLongitude = 0f;
-        while (canGetAccurateRes)
-        {
-            LocationInfo locationInfo = Input.location.lastData;
-            // 正確な値が取れたとき
-            if (locationInfo.horizontalAccuracy <= 3.0f)
-            {
-                canGetAccurateRes = true;
-                getLongitude = locationInfo.longitude;
-            }
-        }
-        return getLongitude;
+        return Input.location.lastData.horizontalAccuracy;
     }
 
 }

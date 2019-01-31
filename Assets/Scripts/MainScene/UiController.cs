@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class changes Main Ui by judgin whether location data is saved or not
@@ -16,6 +17,11 @@ public class UiController : MonoBehaviour {
     [Tooltip("If location data is saved. Show this UI")]
     [SerializeField]
     GameObject savedUi;
+
+    private void Awake()
+    {
+        SceneManager.LoadScene("Debug", LoadSceneMode.Additive);
+    }
 
     private void Start()
     {
