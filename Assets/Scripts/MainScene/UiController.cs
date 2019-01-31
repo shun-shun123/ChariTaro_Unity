@@ -20,7 +20,10 @@ public class UiController : MonoBehaviour {
 
     private void Awake()
     {
-        SceneManager.LoadScene("Debug", LoadSceneMode.Additive);
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.isDebugMode))
+        {
+            SceneManager.LoadScene("Debug", LoadSceneMode.Additive);
+        }
     }
 
     private void Start()

@@ -10,6 +10,8 @@ public class DebugController : MonoBehaviour {
     [SerializeField] Text locationDataText;
     [SerializeField] Text northHeadingText;
     [SerializeField] Text savedLocationInfo;
+    [SerializeField] GameObject trueHeadingArrow;
+    [SerializeField] GameObject magneticHeadingArrow;
     #endregion
 
     #region DebugParameters
@@ -40,8 +42,7 @@ public class DebugController : MonoBehaviour {
         {
             savedLocationInfo.text = "Location Data is not saved";
         }
-        GPSController.GetLatitude();
-        GPSController.GetAccuracy();
-        GPSController.GetLongitude();
+        magneticHeadingArrow.transform.rotation = Quaternion.Euler(0, 0, DirectionDetector.GetMagneticHeading());
+        trueHeadingArrow.transform.rotation = Quaternion.Euler(0, 0, DirectionDetector.GetTrueHeading());
 	}
 }
