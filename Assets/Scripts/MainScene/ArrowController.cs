@@ -23,7 +23,7 @@ namespace MainScene
 
         // 現在位置と登録位置の差から方角を取り出すための変数
         // latitude, longitude
-        Vector2 toNorth = new Vector2(0.0f, 1.0f);
+        Vector2 toNorth = new Vector2(1.0f, 0.0f);
 
         private void OnEnable()
         {
